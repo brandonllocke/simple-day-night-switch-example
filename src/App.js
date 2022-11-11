@@ -1,22 +1,29 @@
 import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
 
 function App() {
+    const themeOptions = ['light', 'dark']
+    const [themeMode, setThemeMode] = useState(themeOptions[1]);
+
+    const toggleTheme = () => {
+        if (themeMode === themeOptions[0]) {
+            setThemeMode(themeOptions[1]);
+        } else {
+            setThemeMode(themeOptions[0])
+        }
+    }
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+      <header className={`App-header-${themeMode}`}>
+        <button onClick={() => toggleTheme() }>
+            <img src={logo} className={`App-logo-${themeMode}`} alt="logo" />
+        </button>
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Click the logo to switch day/night mode.
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
       </header>
     </div>
   );
